@@ -1,0 +1,37 @@
+#assing/apply over y axis all cols 
+data = {'Name':[1,2,3,4],
+        'Age':[20, 21, 19, 18],'ra':[1,2,3,4]}
+  
+# Create DataFrame
+df = pd.DataFrame(data)
+# calculate the 80th percentile for each column
+percentile_80 = df.quantile(0.8)
+
+# create a boolean DataFrame where True represents a value that is greater than the 80th percentile
+bool_df = df.apply(lambda x: x > percentile_80[x.name])
+
+# convert the boolean DataFrame to integer values
+int_df = bool_df.astype(int)
+
+# append the resulting columns to the original DataFrame
+df = df.assign(A_gt_80=int_df['Name'], B_gt_80=int_df['Age'], C_gt_80=int_df['ra'])
+
+print(df)
+
+
+#vectoize
+
+arr1 = 2
+def func(x, y):
+    return x * y
+vec = np.vectorize(func)
+vec(arr, arr1)
+
+
+
+import numpy as np
+arr= np.array([[2,3,4,5],[1,7,3,5],[2,8,6,9],[11,23,12,19]])
+
+np.hsplit(arr,2)
+np.vsplit(arr,2)
+
